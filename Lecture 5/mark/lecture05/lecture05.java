@@ -17,6 +17,8 @@ public class lecture05 {
 		
 		//System.out.println(bt.getRoot());
 		bt.inOrder(bt.root);
+		System.out.println(" ");
+		bt.descOrder(bt.root);
 		
 		/*LinkedList<String> ll = new LinkedList<String>();
 		

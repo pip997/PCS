@@ -68,11 +68,19 @@ public class BinaryTree<AnyType>
 		return result;
 	}
 	
-	public void inOrder(Node node) {
+	public void ascOrder(Node node) {
 		  if (node != null) {
-		   inOrder(node.left);
+		   ascOrder(node.left);
 		   System.out.print(((Integer) node.data).intValue() + ",");
-		   inOrder(node.right);
+		   ascOrder(node.right);
+		  }
+		 }
+	
+	public void descOrder(Node node) {
+		  if (node != null) {
+		   descOrder(node.right);
+		   System.out.print(((Integer) node.data).intValue() + ",");
+		   descOrder(node.left);
 		  }
 		 }
 
