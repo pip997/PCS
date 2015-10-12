@@ -16,8 +16,17 @@ public class lecture05 {
 		}
 		
 		//System.out.println(bt.getRoot());
-		bt.inOrder(bt.root);
-		System.out.println(" ");
+		bt.ascOrder(bt.root);
+		System.out.println();
+		bt.descOrder(bt.root);
+		System.out.println();
+		bt.search(12, bt.root);
+		 
+		bt.insert(bt.root, 82);
+		
+		System.out.println();
+		bt.ascOrder(bt.root);
+		System.out.println();
 		bt.descOrder(bt.root);
 		
 		/*LinkedList<String> ll = new LinkedList<String>();

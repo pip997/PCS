@@ -83,6 +83,27 @@ public class BinaryTree<AnyType>
 		   descOrder(node.left);
 		  }
 		 }
+	
+	public void search (int searchItem, Node node)
+	{
+		boolean isFound = false;
+		if(node != null)
+		{
+			search(searchItem, node.left);
+			search(searchItem, node.right);
+			if (((Integer) node.data).intValue() == searchItem)
+			{
+				isFound = true;
+			}
+			else
+				isFound = false;
+		}
+		if (isFound)
+		{
+			System.out.println("" + searchItem + " has been found to be same as " + (((Integer) node.data).intValue()));
+		}
+		
+	}
 
 	/*@Override public String toString()
 	{
