@@ -6,16 +6,17 @@ public class lecture05 {
 
 	public static void main(String[] args) 
 	{
-		BinaryTree bt = new BinaryTree();
 		
-		bt.insert(78);
-		bt.insert(58);
-		bt.insert(31);
-		bt.insert(44);
-		bt.insert(182);
+		int[] arr = { 10, 9, 2, 3, 4, 5, 9, 12, 8, 18, 13, 16 };
+		BinaryTree bt = new BinaryTree(new Integer(arr[0])); //Works only with Integer objects (or can be rewritten to int) since we need to compare values.
 		
-		System.out.println(bt.getRoot());
-		System.out.println(bt);
+		for (int i = 1; i < arr.length; i++)
+		{
+			bt.insert(bt.root, new Integer(arr[i]));
+		}
+		
+		//System.out.println(bt.getRoot());
+		bt.inOrder(bt.root);
 		
 		/*LinkedList<String> ll = new LinkedList<String>();
 		

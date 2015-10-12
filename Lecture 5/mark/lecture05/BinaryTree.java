@@ -4,14 +4,14 @@ import java.util.*;
 
 public class BinaryTree<AnyType>
 {
-	private Node<AnyType> root;
+	public Node<AnyType> root;
 	
 	private static class Node<AnyType> {
-		public int data;
+		public AnyType data;
 		Node left;
 		Node right;
 		
-		Node (int newdata) {
+		Node (AnyType newdata) {
 			data = newdata;
 			left = null;
 			right = null;
@@ -21,9 +21,9 @@ public class BinaryTree<AnyType>
 	
 	//BinaryTree () {}
 	
-	public void BinaryTree() //implement left sub-tree, print right sub-tree, print node
+	public BinaryTree(Object data) //implement left sub-tree, print right sub-tree, print node
 	{
-		root = null;
+		root = new Node(data);
 	}
 	
 	public void insert(int data) 
@@ -31,14 +31,14 @@ public class BinaryTree<AnyType>
 		root = insert(root,data);
 	}
 	
-	private Node insert(Node node, int data)
+	Node insert(Node node, int data)
 	{
 		if (node == null){
 			node = new Node(data);
 		}
 		else {
-			if (data <= node.data){
-				node.left = insert(node.left, data);
+			if (data <= (Integer) node.data){ //IF THE NUMBER IS SMALLER THAN THE CURRENT NUMBER
+				node.left = insert(node.left, data); //INSERT CHILD TO THE LEFT
 			}
 			else {
 				node.right = insert(node.right, data);
@@ -47,16 +47,16 @@ public class BinaryTree<AnyType>
 		return node;
 	}
 	
-	public int getRoot ()
+	/*public int getRoot ()
 	{
-		return root.data;
-	}
+		//return root.data.toString();
+	}*/
 	
 	public String toString()
 	{
 		return subTreetoString(root);
 	}
-	
+
 	private String subTreetoString (Node n)
 	{
 		String result = "";
@@ -67,6 +67,14 @@ public class BinaryTree<AnyType>
 		
 		return result;
 	}
+	
+	public void inOrder(Node node) {
+		  if (node != null) {
+		   inOrder(node.left);
+		   System.out.print(((Integer) node.data).intValue() + ",");
+		   inOrder(node.right);
+		  }
+		 }
 
 	/*@Override public String toString()
 	{
