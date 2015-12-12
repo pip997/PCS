@@ -41,7 +41,6 @@ public class QuickSort {
     	
     	for (int i = 0; i < count.length; i++) {
     		outputString[i] = words[i] + " " + count[i];
-    		System.out.print(outputString[i] + " ");
     	}
     	
     	
