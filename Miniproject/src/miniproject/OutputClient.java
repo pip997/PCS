@@ -7,32 +7,38 @@ public class OutputClient extends Thread {
 	private static InetAddress host;
 	private static final int PORT = 1234;
 	
-	private PrintWriter output;
+	private static PrintWriter output;
 		
-	private String outMessage;
-	private String[] wordList;
+	private static String outMessage;
+	private static String[] wordList;
+	
+	public static void main(String[] args) {
+		try{
+			host = InetAddress.getLocalHost();
+		}
+		catch (UnknownHostException uhEx){
+			System.out.println("Host ID was not found...");
+			System.exit(1);
+		}
+		accessServer();
+	}
 
-	public void run(){
+	public static void accessServer(){
 		
-		Socket socket = null;
+		Socket link = null;
 
 		try {
-			socket = new Socket(host, PORT);
-			ObjectInputStream input = new ObjectInputStream(socket.getInputStream());
-			PrintWriter output = new PrintWriter(socket.getOutputStream(), true);
-			
+			link = new Socket(host, PORT);
+			ObjectInputStream input = new ObjectInputStream(link.getInputStream());
+			PrintWriter output = new PrintWriter(link.getOutputStream(), true);
 			Object object = input.readObject();
             wordList =  (String[]) object;
-			
 			outMessage = "";
 			
 			for (int i = 0; i < wordList.length; i += 2) {
 				outMessage += wordList[i] + " " + wordList[i + 1] + ", ";
 			}
-			
 			output.println(outMessage);
-			
-			
 		}
 		catch(IOException ioEx) {
 			ioEx.printStackTrace();
@@ -42,13 +48,14 @@ public class OutputClient extends Thread {
 		}
 		finally {
 			try {
-				if(socket != null) {
+				if(link != null) {
 					System.out.println("Closing connection ...");
-					socket.close();
+					link.close();
 				}
 			}
 			catch (IOException ioEx) {
 				System.out.println("Unable to disconnect!");
+				System.exit(1);
 			}
 		}
 		
