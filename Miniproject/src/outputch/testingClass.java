@@ -6,7 +6,7 @@ public class testingClass {
 		QuickSort qs = new QuickSort();
 		qs.qSort(0, qs.array.length - 1);
 		qs.printArray();
-
+		qs.histogram();
 	}
 
 }

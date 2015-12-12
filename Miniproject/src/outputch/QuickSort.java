@@ -1,52 +1,69 @@
 package outputch;
 
 public class QuickSort {
-	String[] array  = {"hej", "med", "error", "redacted", "dig", "wooo"};
+ 	int[] array = {2,6,1,2,7,9,43,2};
+ 	String[] strArray = {"kat", "we", "qq", "gg", "qq", "ww", "ee", "rr"};
 
     public QuickSort() {
-        
     }
 
-    public QuickSort(String[] inputArray) {
-        array = inputArray;
+    public QuickSort(String name) {
     }
 
-    public void qSort(int start, int end){
-    	System.out.println(array.length);
-        int i = start, j = end;
-        System.out.println("i = " + i + " j = " + j + " start = " + start + " end = " + end);
-        String pivot = array[i];
+    public void qSort(int low, int high){
+        int i = low, j = high;
         
-        while (j > i){
-            while (array[i].compareTo(pivot) <= 0 && i < end && j > i){
+        int pivot = array[low + (high-low)/2];
+        
+        while (i<=j){
+            while (array[i] > pivot){
                 i++;
             }
-            while(array[i].compareTo(pivot) >= 0 && j > start && j >= i){
+            while(array[j] < pivot){
                 j--;
             }
-            if (j > i){
-                swap(array, i, j);
+            if (i <= j){
+                swap(i,j);
+                i++;
+                j--;
             }
         }
-        System.out.println("start = " + start);
-        System.out.println("j = " + j);
-        swap (array, start, j);
-        qSort(start, j - 1);
-        qSort(j + 1, end);
+        if (low < j)
+            qSort(low,j);
+        if (i < high)
+            qSort (i, high);
     }
     
-    public void swap(String[] a, int i, int j){
-        String temp = a[i];
-        a[i] = a[j];
-        a[j] = temp;
+    public String[] histogram() {
+    	String[] outputString = new String[array.length];
+    	
+    	for (int i = 0; i < array.length; i++) {
+    		outputString[i] = strArray[i] + " " + array[i];
+    		System.out.print(outputString[i] + " ");
+    	}
+    	
+    	
+    	
+		return outputString;
+    }
+    
+    public void swap(int i, int j) {
+    	String strTemp = strArray[i];
+    	strArray[i] = strArray[j];
+    	strArray[j] = strTemp;
+    	
+        int temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
     }
     
     public void printArray(){
         System.out.println();
-        for (int i=0; i<array.length; i++){
-            System.out.print(array[i]);
+        for (int i=0; i < array.length; i++){
+            System.out.print(strArray[i] + " " + array[i]);
             System.out.print(" ");
         }
         System.out.println();
     }
 }
+
