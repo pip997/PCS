@@ -165,3 +165,5 @@
 .recommenders/index/http___download_eclipse_org_recommenders_models_mars_/segments.gen
 .recommenders/index/http___download_eclipse_org_recommenders_models_mars_/segments_1
 .recommenders/index/http___download_eclipse_org_recommenders_models_mars_/write.lock
+.metadata/
+.recommenders/
