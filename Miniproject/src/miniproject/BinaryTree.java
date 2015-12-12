@@ -5,45 +5,59 @@ import java.util.*;
 public class BinaryTree {
 
     private Node root;
-    ArrayList<String> arrayList = new ArrayList<String>();
-    String[] inputArray;
+	private ArrayList<String> arrayList = new ArrayList<String>();
     
     private static class Node{
         String data;
+        int dataCount;
         Node left;
         Node right;
-
         
-        Node(String newdata){
+        Node(String newdata, int newDataCount){
             data = newdata;
+            dataCount = newDataCount;
             left = null;
             right = null;
         }
         
     }
     
-    public void BinaryTree(){
+    
+    
+    public BinaryTree(){
         root = null;
     }
     
-    public void insertArray(String[] newDataArray)
+    BinaryTree(String[] s)
+    {
+        WordCount wordCount = new WordCount(s);
+        
+        String[] wordArray = wordCount.getStringArray();
+        int[] countArray = wordCount.getIntArray();
+        
+        insertArray(wordArray, countArray);
+        
+    	root = null;
+    	
+    }
+    
+    
+    
+    public void insertArray(String[] newDataArray, int[] newDataCountArray)
     {
     	for (int i = 0; i < newDataArray.length; ++i)
     	{
-    		insert(newDataArray[i]);
+    		insert(newDataArray[i], newDataCountArray[i]);
     	}
-    	inputArray = newDataArray;
     }
     
-    public void insert(String data){
-        root = insert(root,data);
+    public void insert(String data, int dataCount){
+        root = insert(root,data, dataCount);
     }
     
     public String[] sortArray()
     {
-    	arrayList.clear();
-    	
-    	addElemementsToArrayList(root);
+      	addElemementsToArrayList(root);
     	
     	String[] sortedArray = new String[arrayList.size()];
     	arrayList.toArray(sortedArray);
@@ -53,21 +67,31 @@ public class BinaryTree {
     
     private void addElemementsToArrayList(Node n)
     {
-    	addElemementsToArrayList(n.left);
-    	arrayList.add(n.data);
-    	addElemementsToArrayList(n.right);
+    	if (n == null)
+    	{
+    		return;
+    	}
+    	else
+    	{
+    		addElemementsToArrayList(n.left);
+        	arrayList.add(n.data + " " + n.dataCount);
+        	addElemementsToArrayList(n.right);
+    	}
+    	
+    	
     }
     
-    private Node insert(Node node, String data){
+    private Node insert(Node node, String data, int dataCount){
         if (node==null){
-            node = new Node(data);
+            node = new Node(data, dataCount);
         }
         else {
-            if (data.compareTo(node.data) <= 0){
-                node.left = insert(node.left, data);
+        	if (dataCount > node.dataCount){
+                node.left = insert(node.left, data, dataCount);
             }
-            else {
-                node.right = insert(node.right, data);
+            else 
+            {
+                node.right = insert(node.right, data, dataCount);
             }
         }
         return node;
