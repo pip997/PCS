@@ -1,4 +1,4 @@
-package miniproject;
+package outputch;
 
 import java.util.*;
 
