@@ -1,25 +1,27 @@
 package outputch;
 
+import java.util.ArrayList;
+
 public class QuickSort {
- 	int[] array = {2,6,1,2,7,9,43,2};
- 	String[] strArray = {"kat", "we", "qq", "gg", "qq", "ww", "ee", "rr"};
+	int[] count;
+	String[] words;
 
-    public QuickSort() {
-    }
-
-    public QuickSort(String name) {
+    public QuickSort(ArrayList<String> wordList) {
+    	WordCount wc = new WordCount(wordList);
+    	count = wc.getIntArray();
+    	words = wc.getStringArray();
     }
 
     public void qSort(int low, int high){
         int i = low, j = high;
         
-        int pivot = array[low + (high-low)/2];
+        int pivot = count[low + (high-low)/2];
         
         while (i<=j){
-            while (array[i] > pivot){
+            while (count[i] > pivot){
                 i++;
             }
-            while(array[j] < pivot){
+            while(count[j] < pivot){
                 j--;
             }
             if (i <= j){
@@ -35,10 +37,10 @@ public class QuickSort {
     }
     
     public String[] histogram() {
-    	String[] outputString = new String[array.length];
+    	String[] outputString = new String[count.length];
     	
-    	for (int i = 0; i < array.length; i++) {
-    		outputString[i] = strArray[i] + " " + array[i];
+    	for (int i = 0; i < count.length; i++) {
+    		outputString[i] = words[i] + " " + count[i];
     		System.out.print(outputString[i] + " ");
     	}
     	
@@ -48,19 +50,19 @@ public class QuickSort {
     }
     
     public void swap(int i, int j) {
-    	String strTemp = strArray[i];
-    	strArray[i] = strArray[j];
-    	strArray[j] = strTemp;
+    	String strTemp = words[i];
+    	words[i] = words[j];
+    	words[j] = strTemp;
     	
-        int temp = array[i];
-        array[i] = array[j];
-        array[j] = temp;
+        int temp = count[i];
+        count[i] = count[j];
+        count[j] = temp;
     }
     
     public void printArray(){
         System.out.println();
-        for (int i=0; i < array.length; i++){
-            System.out.print(strArray[i] + " " + array[i]);
+        for (int i=0; i < count.length; i++){
+            System.out.print(words[i] + " " + count[i]);
             System.out.print(" ");
         }
         System.out.println();
