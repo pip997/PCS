@@ -28,7 +28,7 @@ public class BinaryTree {
         root = null;
     }
     
-    BinaryTree(String[] s)
+    BinaryTree(List<String> s)
     {
         WordCount wordCount = new WordCount(s);
         

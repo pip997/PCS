@@ -7,17 +7,17 @@ public class WordCount {
 	private List<String> stringList = new ArrayList<String>();
 	private List<Integer> countList = new ArrayList<Integer>();
 	
-	WordCount(String[] s)
+	WordCount(List<String> s)
 	{
 		boolean hit;
-		stringList.add(s[0]);
+		stringList.add(s.get(0));
 		countList.add(1);
-		for (int i = 1; i < s.length; ++i)
+		for (int i = 1; i < s.size(); ++i)
     	{
     		hit = false;
 			for (int j = 1; j < stringList.size(); ++j)
     		{
-    			if (s[i].equals(stringList.get(j)))
+    			if (s.get(i).equals(stringList.get(j)))
     			{
     				countList.set(j, countList.get(j)+1);
     				hit = true;
@@ -26,7 +26,7 @@ public class WordCount {
     		}
 			if (!hit)
 			{
-				stringList.add(s[i]);
+				stringList.add(s.get(i));
 				countList.add(1);
 			}
     		
