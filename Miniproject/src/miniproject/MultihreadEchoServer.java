@@ -27,8 +27,8 @@ public class MultihreadEchoServer {
 			Socket client = serverSocket.accept();
 			System.out.println("\nNew client accepted.\n");
 			
-			/*ClientHandler handler = new ClientHandler(client); //THIS IS JUST PLACEHOLDER FOR POTENTIAL CLIENT HANDLING  
-			handler.start(); */
+			ClientHandler handler = new ClientHandler(client); //THIS IS JUST PLACEHOLDER FOR POTENTIAL CLIENT HANDLING  
+			handler.start();
 		} 
 		//Infinite loop, in order to make the server keep waiting and checking for clients
 		while (true); 
