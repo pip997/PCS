@@ -1,15 +1,21 @@
 package outputch;
 
+import java.util.ArrayList;
+
+
 public class BubbleSort {
 	
 	String[] words = {"klo","hjk","hhh","aef","hhh","hhh","hhh","hhh","aef"}; //This is where it needs to import the array from the server
-	int[] frequency = {1,1,5,2,5,5,5,5,2};
+	int[] frequency; //= {1,1,5,2,5,5,5,5,2};
 	
 	public BubbleSort() {
 		
 	}
 
-	public BubbleSort(String[] words, int[] frequency) {
+	public BubbleSort(ArrayList<String> wordList) {
+		WordCount wc = new WordCount(wordList);
+		words = wc.getStringArray();
+		frequency = wc.getIntArray();		
 		}
 	
 	public void bubbleSort(){
