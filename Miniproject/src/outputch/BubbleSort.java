@@ -1,11 +1,12 @@
 package outputch;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 
 public class BubbleSort {
 	
-	String[] words = {"klo","hjk","hhh","aef","hhh","hhh","hhh","hhh","aef"}; //This is where it needs to import the array from the server
+	String[] words;// = {"klo","hjk","hhh","aef","hhh","hhh","hhh","hhh","aef"}; //This is where it needs to import the array from the server
 	int[] frequency; //= {1,1,5,2,5,5,5,5,2};
 	
 	public BubbleSort() {
@@ -82,14 +83,14 @@ public class BubbleSort {
 		String[] outputString = new String[frequency.length];
 		for(int i=0; i<frequency.length; i++){
 		outputString[i] = words[i] +" "+ frequency[i];
-		System.out.print(outputString[i] + " ");
+		//System.out.print(outputString[i] + " ");
 		}
 		
 		return  outputString;
 		
 	}
 	
-	 public void printArray(){
+	public void printArray(){
 	        System.out.println();
 	        for (int i=0; i<frequency.length; i++){
 	            System.out.print(frequency[i] + words[i]);
@@ -99,13 +100,15 @@ public class BubbleSort {
 	    }
 
 	 
-	public static void main(String[] args) {
-		BubbleSort bs = new BubbleSort();
+	/*public static void main(String[] args) {
+		
+		
+		BubbleSort bs = new BubbleSort(wordss);
 		
 		bs.bubbleSort();
-		bs.histogram();
-		bs.printArray();
+		String[] output = bs.histogram();
 		
 		
-	}
+		
+	}*/
 }
