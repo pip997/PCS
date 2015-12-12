@@ -1,11 +1,8 @@
 package miniproject;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.net.InetAddress;
-import java.net.Socket;
-import java.net.UnknownHostException;
-import java.util.Scanner;
+import java.io.*;
+import java.net.*;
+import java.util.*;
 
 public class InputClient {
 
@@ -18,7 +15,7 @@ public class InputClient {
 		}
 		catch (UnknownHostException uhEx){
 			System.out.println("Host ID was not found...");
-			System.exit(-1);
+			System.exit(1);
 		}
 		accessServer();
 	}
@@ -28,16 +25,15 @@ public class InputClient {
 		try{
 			link = new Socket(host,PORT);
 			Scanner input = new Scanner(link.getInputStream());
-			PrintWriter output = new PrintWriter(link.getOutputStream());
+			PrintWriter output = new PrintWriter(link.getOutputStream(), true);
 			Scanner userEntry = new Scanner(System.in);
-			String message, process, result;
+			String message;
 			
 			do{
 				System.out.println("Enter Message:");
 				message = userEntry.nextLine();
-				process = message.replaceAll("[\\p{P}\\p{S}]", "");
-				result = process.toLowerCase();
-				System.out.println("\nMessage: " + result);
+				output.println(message);
+				System.out.println("\nMessage: " + message);
 			}
 			
 			while(!message.equals("***CLOSE***"));
@@ -52,7 +48,7 @@ public class InputClient {
 			}
 			catch(IOException ioEx){
 				System.out.println("Unable to close connection...");
-				System.exit(-1);
+				System.exit(1);
 			}
 		}
 	}
