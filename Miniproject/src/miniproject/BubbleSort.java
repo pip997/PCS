@@ -1,4 +1,4 @@
-package outputch;
+package miniproject;
 
 public class BubbleSort {
 
@@ -21,6 +21,8 @@ public class BubbleSort {
 			boolean noSwap = true;
 			for (int j = 1; j < (n-i); j++){
 				storeResult = array[j-1].compareTo(array[j]); 
+				//the compareTo function compares two strings in the array, a and b, and if the output is above 0 it means 
+				//that the argument a being compared to argument b is lexicographically greater than b which means it needs to be later in the array.
 		
 				if (storeResult>0){
 					temp = array[j-1];
