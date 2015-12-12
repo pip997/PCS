@@ -4,13 +4,13 @@ import java.io.*;
 import java.net.*;
 import java.util.*;
 
-public class ClientHandler extends Thread {
+public class InputClientHandler extends Thread {
 
 	private Socket client;
 	private Scanner input;
 	private PrintWriter output;
 
-	public ClientHandler(Socket socket){
+	public InputClientHandler(Socket socket){
 		client = socket;
 		try{
 			input = new Scanner(client.getInputStream());
