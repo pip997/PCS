@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;BinaryTree.java&apos; to &apos;SortTest/src&apos;&#x0D;&#x0A;- Original project: &apos;Miniproject&apos;&#x0D;&#x0A;- Destination element: &apos;SortTest/src&apos;&#x0D;&#x0A;- Original element: &apos;miniproject.BinaryTree.java&apos;" description="Copy compilation unit" destination="=SortTest/src" element1="/src&lt;miniproject{BinaryTree.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1449921083254" units="1" version="1.0"/>
+</session>
