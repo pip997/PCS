@@ -1,4 +1,4 @@
-package generalServerCodeMT;
+package miniproject;
 
 import java.io.IOException;
 import java.io.PrintWriter;
