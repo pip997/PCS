@@ -30,15 +30,14 @@ public class BinaryTree {
     
     BinaryTree(List<String> s)
     {
-        WordCount wordCount = new WordCount(s);
+    	root = null;
+    	
+    	WordCount wordCount = new WordCount(s);
         
         String[] wordArray = wordCount.getStringArray();
         int[] countArray = wordCount.getIntArray();
         
         insertArray(wordArray, countArray);
-        
-    	root = null;
-    	
     }
     
     
@@ -55,14 +54,14 @@ public class BinaryTree {
         root = insert(root,data, dataCount);
     }
     
-    public String[] sortArray()
+    public String[] getHistogram()
     {
       	addElemementsToArrayList(root);
     	
-    	String[] sortedArray = new String[arrayList.size()];
-    	arrayList.toArray(sortedArray);
+    	String[] histogram = new String[arrayList.size()];
+    	arrayList.toArray(histogram);
     	
-    	return sortedArray;
+    	return histogram;
     }
     
     private void addElemementsToArrayList(Node n)
