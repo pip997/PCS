@@ -1,7 +1,10 @@
-package miniproject;
+package outputch;
 
 import java.io.*;
 import java.net.*;
+import java.util.*;
+
+import miniproject.InputClientHandler;
 
 public class MultihreadEchoServer {
 	//defining the port and the socket
@@ -29,7 +32,6 @@ public class MultihreadEchoServer {
 			
 			InputClientHandler handler = new InputClientHandler(client); //THIS IS JUST PLACEHOLDER FOR POTENTIAL CLIENT HANDLING  
 			handler.start();
-			
 		} 
 		//Infinite loop, in order to make the server keep waiting and checking for clients
 		while (true); 
