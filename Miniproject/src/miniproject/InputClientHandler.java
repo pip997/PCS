@@ -34,7 +34,6 @@ public class InputClientHandler extends Thread {
 			receivedArray = result.split("[\\W]");
 			for (String s:receivedArray){
 				output.println("Echo: " + s);
-				System.out.println(s);
 			}
 			
 			//Print out "Echo: (What ever was sent)"

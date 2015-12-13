@@ -6,9 +6,8 @@ import java.net.*;
 public class OutputClient extends Thread {
 	private static InetAddress host;
 	private static final int PORT = 1234;
-	
 	private static PrintWriter output;
-		
+	
 	private static String outMessage;
 	private static String[] wordList;
 	
@@ -39,6 +38,7 @@ public class OutputClient extends Thread {
 				outMessage += wordList[i] + " " + wordList[i + 1] + ", ";
 			}
 			output.println(outMessage);
+			System.out.println(outMessage);
 		}
 		catch(IOException ioEx) {
 			ioEx.printStackTrace();
