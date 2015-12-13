@@ -2,8 +2,10 @@ package miniproject;
 
 import java.io.*;
 import java.net.*;
+import java.util.Scanner;
 
 public class OutputClient extends Thread {
+	private static Socket link;
 	private static InetAddress host;
 	private static final int PORT = 1234;
 	private static PrintWriter output;
@@ -21,6 +23,21 @@ public class OutputClient extends Thread {
 		}
 		accessServer();
 	}
+	/*
+	public OutputClient (Socket socket){
+		link = socket;
+		try{
+			ObjectInputStream input = new ObjectInputStream(link.getInputStream());
+			PrintWriter output = new PrintWriter(link.getOutputStream(), true);
+			Object object = input.readObject();
+            wordList =  (String[]) object;
+		}
+		catch(IOException ioEx){
+			ioEx.printStackTrace();
+		} catch (ClassNotFoundException cnfEx) {
+			output.println("Could not receive word list from server");
+		}
+	}*/
 
 	public static void accessServer(){
 		
@@ -35,7 +52,7 @@ public class OutputClient extends Thread {
 			outMessage = "";
 			
 			for (int i = 0; i < wordList.length; i += 2) {
-				outMessage += wordList[i] + " " + wordList[i + 1] + ", ";
+				outMessage = outMessage + wordList[i] + " " + wordList[i + 1] + ", ";
 			}
 			output.println(outMessage);
 			System.out.println(outMessage);

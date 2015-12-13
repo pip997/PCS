@@ -30,8 +30,6 @@ public class MultihreadEchoServer {
 			InputClientHandler handler = new InputClientHandler(client); //THIS IS JUST PLACEHOLDER FOR POTENTIAL CLIENT HANDLING  
 			handler.start();
 			
-			OutputClient outputclient = new OutputClient();
-			outputclient.start();
 		} 
 		//Infinite loop, in order to make the server keep waiting and checking for clients
 		while (true); 
