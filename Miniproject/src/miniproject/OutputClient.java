@@ -2,64 +2,45 @@ package miniproject;
 
 import java.io.*;
 import java.net.*;
-import java.util.Scanner;
 
 public class OutputClient extends Thread {
 	private static Socket link;
-	private static InetAddress host;
-	private static final int PORT = 1234;
+	private static ObjectInputStream input;
 	private static PrintWriter output;
-	
 	private static String outMessage;
 	private static String[] wordList;
 	
-	public static void main(String[] args) {
-		try{
-			host = InetAddress.getLocalHost();
-		}
-		catch (UnknownHostException uhEx){
-			System.out.println("Host ID was not found...");
-			System.exit(1);
-		}
-		accessServer();
-	}
-	/*
-	public OutputClient (Socket socket){
-		link = socket;
-		try{
-			ObjectInputStream input = new ObjectInputStream(link.getInputStream());
-			PrintWriter output = new PrintWriter(link.getOutputStream(), true);
-			Object object = input.readObject();
-            wordList =  (String[]) object;
-		}
-		catch(IOException ioEx){
-			ioEx.printStackTrace();
-		} catch (ClassNotFoundException cnfEx) {
-			output.println("Could not receive word list from server");
-		}
-	}*/
-
-	public static void accessServer(){
-		
-		Socket link = null;
-
+	OutputClient(Socket s){
+		link = s;
 		try {
-			link = new Socket(host, PORT);
-			ObjectInputStream input = new ObjectInputStream(link.getInputStream());
-			PrintWriter output = new PrintWriter(link.getOutputStream(), true);
-			Object object = input.readObject();
-            wordList =  (String[]) object;
-			outMessage = "";
-			
-			for (int i = 0; i < wordList.length; i += 2) {
-				outMessage = outMessage + wordList[i] + " " + wordList[i + 1] + ", ";
+			input = new ObjectInputStream(link.getInputStream());
+			output = new PrintWriter(System.out, true);
+		}
+		catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void run() {
+		try {
+			do {
+				
+				Object object = input.readObject();
+	            wordList =  (String[]) object;
+				outMessage = "";
+				
+				for (int i = 0; i < wordList.length; i++) {
+					outMessage = outMessage + wordList[i] + ", ";
+				}
+				output.println(outMessage);
 			}
-			output.println(outMessage);
-			System.out.println(outMessage);
-		}
-		catch(IOException ioEx) {
-			ioEx.printStackTrace();
-		}
+			
+		 while(!link.isClosed());}
+			catch(IOException ioEx) {
+				System.out.println("I/O error in OutputClient");
+				ioEx.printStackTrace();
+			}
 		catch (ClassNotFoundException cnfEx) {
 			output.println("Could not receive word list from server");
 		}
@@ -73,27 +54,8 @@ public class OutputClient extends Thread {
 			catch (IOException ioEx) {
 				System.out.println("Unable to disconnect!");
 				System.exit(1);
-			}
+			}	
 		}
-		
-		
-		/*
-		outMessage = "";
-		String tempWord = wordList.get(0);
-		int wordCount = 0;
-		
-		for (int i = 0; i < wordList.size(); i++) {
-			String currentWord = wordList.get(i);
-			if (currentWord == tempWord) {
-				wordCount++;
-			}
-			else {
-				outMessage += tempWord + " " + wordCount + ", ";
-				tempWord = currentWord;
-				wordCount = 1;
-			}
-		}
-		outMessage += tempWord + " " + wordCount + ", ";
-		*/
 	}
+
 }

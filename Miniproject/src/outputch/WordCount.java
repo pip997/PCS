@@ -15,7 +15,7 @@ public class WordCount {
 		for (int i = 1; i < s.size(); ++i)
     	{
     		hit = false;
-			for (int j = 1; j < stringList.size(); ++j)
+			for (int j = 0; j < stringList.size(); ++j)
     		{
     			if (s.get(i).equals(stringList.get(j)))
     			{

@@ -4,52 +4,50 @@ import java.io.*;
 import java.net.*;
 import java.util.*;
 
-public class InputClient {
+public class InputClient extends Thread{
 
-	private static InetAddress host;
-	private static final int PORT = 1234;
+	private static Socket server;
+	private Scanner userEntry;
+	private PrintWriter output;
 	
-	public static void main(String[] args) {
-		try{
-			host = InetAddress.getLocalHost();
+	InputClient(Socket socket)
+	{
+		try {
+			server = socket;
+			userEntry = new Scanner(System.in);
+		
+			output = new PrintWriter(server.getOutputStream(), true);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		catch (UnknownHostException uhEx){
-			System.out.println("Host ID was not found...");
-			System.exit(1);
-		}
-		accessServer();
+		
 	}
 	
-	private static void accessServer(){
-		Socket link = null;
+	public void run()
+	{
+		String message;
+		
+		do{
+			System.out.println("Enter Message:");
+			message = userEntry.nextLine();
+			System.out.println("Sending message...");
+			
+			output.println(message);
+			System.out.println("Message sent: " + message);
+			//System.out.println("\nMessage: " + message);
+		}
+		while(!message.equals("***CLOSE***"));
+		
 		try{
-			link = new Socket(host,PORT);
-			Scanner input = new Scanner(link.getInputStream());
-			PrintWriter output = new PrintWriter(link.getOutputStream(), true);
-			Scanner userEntry = new Scanner(System.in);
-			String message;
-			
-			do{
-				System.out.println("Enter Message:");
-				message = userEntry.nextLine();
-				output.println(message);
-				System.out.println("\nMessage: " + message);
-			}
-			
-			while(!message.equals("***CLOSE***"));
+			System.out.println("Closing connection...");
+			server.close();
 		}
 		catch(IOException ioEx){
-			ioEx.printStackTrace();
+			System.out.println("Unable to close connection...");
+			System.exit(1);
 		}
-		finally{
-			try{
-				System.out.println("Closing connection...");
-				link.close();
-			}
-			catch(IOException ioEx){
-				System.out.println("Unable to close connection...");
-				System.exit(1);
-			}
-		}
+			
+		
 	}
 }
